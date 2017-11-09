@@ -1,13 +1,22 @@
-package 'tree' do
-  action :install
-end
 
-file '/etc/motd' do
-  content "Property of ...
+#
+# The package, named 'tree', is installed
+#
+# @see https://docs.chef.io/resource_package.html
+#
+package 'tree'
 
-  IPADDRESS: #{node['ipaddress']}
-  HOSTNAME : #{node['hostname']}
-  MEMORY   : #{node['memory']['total']}
-  CPU      : #{node['cpu']['0']['mhz']}
-"
+#
+# The template, named '/etc/motd' is created
+#   with the source 'motd.erb'
+#
+# @see https://docs.chef.io/resource_template.html
+#
+# The template file, named 'motd.erb' can be found in the
+#   the templates folder under default. This means for all platforms:
+#
+# @see https://docs.chef.io/resource_template.html#file-specificity
+#
+template '/etc/motd' do
+  source 'motd.erb'
 end
